@@ -22,9 +22,6 @@ vector<int> partitionLabels(string s) {
         }
     }
 
-    sort(ans.begin(), ans.end());
-    reverse(ans.begin(), ans.end());
-
     return ans;    
 }
 
