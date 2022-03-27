@@ -6,33 +6,42 @@ using namespace std;
 class Solution {
 public:
 
-    int cal(vector<string>& words, vector<char>& letters, vector<int>& score)
+    int cal(vector<string> words, vector<char> letters, vector<int> score)
     {
-        int s = 0;
-        int c1 = 0;
-        int c = 0;
-     
-       for(int i = 0; i < words.size(); i++){
-           for(int j = 0; j < words[i].size(); j++)
-           {
-               for(int l = 0; l < letters.size(); l++){
-                   if(letters[l] == words[i][j]){
-                       letters[l] = '$';
-                       c++;
-                   }
-               }
-               // 
-               c++;
-               //
-               s += score[words[i][j]-'a'];
-           }
+       string t;
+       for(int i = 0; i < letters.size(); i++){
+           t += letters[i];
        }
 
+        string t1;
 
-       
+        for(auto x: words){
+            t1 += x;
+        }
 
-       cout << c1 << " " << c << " " << s << "\n";
-       return 0;
+        int c = 0;
+
+
+        for(auto x: t1){
+
+            for(int i = 0; i < t.size(); i++){
+                if(t[i] == x){
+                    t[i] = '$';
+                    c++;
+                    break;
+                }
+            }
+        }
+
+        if(c == t1.size()){
+            int ans = 0;
+            for(auto x: t1){
+                ans += score[x-'a'];
+            }
+
+            return ans;
+        }
+        return -1;
     }
    
     int maxScoreWords(vector<string>& words, vector<char>& letters, vector<int>& score) {
@@ -52,8 +61,7 @@ public:
                 }
             }            
             
-            int mx = max(mx, cal(_words, letters, score));
-
+            mx = max(mx, cal(_words, letters, score));
             
         }
 

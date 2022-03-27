@@ -1,32 +1,30 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
+    void solution(string str, string asf,int count, int pos)
+    {
+        if(str.size() == pos){
+            if(count == 0){
+                cout << asf << endl;
+            }
+            else{
+                cout << asf << to_string(count) << endl;
+            }
 
-void solution(string str, string sub, int c)
-{
-    if(str.size() == 0){
-        if(c == 0){
-            cout << str << endl;
+            return ;
+        }
+
+        // add 
+        if(count == 0){
+            solution(str, asf+str[pos], 0, pos+1);
         }
         else{
-            cout << str << c << endl;
+            solution(str, asf+to_string(count)+str[pos], 0, pos+1);
         }
+        solution(str, asf, count+1, pos+1);
     }
-
-    // if take
-    if(c != 0){
-        solution(str.substr(1), sub+to_string(c)+str[0], 0);
+	int main() {
+        string str;
+        cin >> str;
+        solution(str,"",0,0);
+        return 0;
     }
-    else{
-        solution(str.substr(1), sub+str[0], c);
-    }
-
-    solution(str.substr(1), sub, c+1);
-}
-int main()
-{
-    string str;
-
-    cin>>str;
-
-    solution(str, "", 0);
-}
